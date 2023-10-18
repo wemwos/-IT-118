@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Registration Form</title>
+    <script>
+
+        //Storing data
+        function storeData() {
+            const username = document.getElementById('uname').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Email validation 
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (!email.match(emailPattern)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            const userData = {
+                username: username,
+                email: email,
+                password: password
+            };
+
+            localStorage.setItem('userData', JSON.stringify(userData));
+            alert('Registration data has been saved in local storage.');
+            document.getElementById('uname').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('password').value = '';
+        }
+    </script>
+</head>
+<body>
+    <form method="POST" action="registration.php">
+        <h1>USER REGISTRATION FORM</h1>
+        <input type="text" id="uname" name="uname" placeholder="Enter Username Here" required class="input"><br><br>
+        <input type="email" id="email" name="email" placeholder="Enter Email Here" required class="input"><br><br>
+        <input type="password" id="password" name="password" placeholder="Enter Password Here" required class="input"><br><br>
+        <input type="button" value="Register" class="custom-button" onclick="storeData() ">
+    </form>
+
+    <style>
+       body {
+    background-color: #cfcfcf;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    margin: 0; 
+}
+
+form {
+    background-color: #313232;
+    border-radius: 10px;
+    width: 350px;
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(179, 171, 171, 0.2);
+}
+
+h1 {
+    color: white;
+    font-size: x-large;
+    font-family:Verdana;
+}
+
+.input {
+    background-color: #c7cbcf;
+    width: 95%; 
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+}
+
+.custom-button {
+    background-color: #171818;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.custom-button:hover {
+    background-color: #909498;
+}
+
+    </style>
+</body>
+</html>
